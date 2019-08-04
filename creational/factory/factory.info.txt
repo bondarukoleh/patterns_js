@@ -1,0 +1,7 @@
+Factory - is a creational design pattern that provides an ability to creating objects in a superclass,
+  but allows subclasses to change the type of objects that will be created.
+
+Factory used as superclass, and we ask it to create object for us, but depending on our purpose.
+To make it work - objects that we create in Factory should have same interface.
+
+Abstract factories - bunch of factories grouped together.
