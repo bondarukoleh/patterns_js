@@ -5,3 +5,21 @@ Factory used as superclass, and we ask it to create object for us, but depending
 To make it work - objects that we create in Factory should have same interface.
 
 Abstract factories - bunch of factories grouped together.
+
+Prototype isn’t based on inheritance, so it doesn’t have its drawbacks. On the other hand, Prototype requires
+ a complicated initialization of the cloned object. Factory Method is based on inheritance but doesn’t require an
+ initialization step.
+
+Factory Method is a specialization of Template Method. At the same time, a Factory Method may serve as a step in a
+ large Template Method.
+
+Many designs start by using Factory Method (less complicated and more customizable via subclasses) and evolve
+ toward Abstract Factory, Prototype, or Builder (more flexible, but more complicated).
+
+Builder focuses on constructing complex objects step by step. Abstract Factory specializes in creating families of
+ related objects. Abstract Factory returns the product immediately, whereas Builder lets you run some additional
+ construction steps before fetching the product.
+
+Abstract Factory can serve as an alternative to Facade when you only want to hide the way the subsystem objects
+ are created from the client code.
+
