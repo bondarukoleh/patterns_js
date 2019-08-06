@@ -18,8 +18,11 @@ Patterns can be expressive: When we look at a pattern there’s generally a set 
 *Structural Design Patterns
   Structural patterns are concerned with object composition and typically identify simple ways to realize
   relationships between different objects. They help ensure that when one part of a system changes, the entire
+
   structure of the system doesn't need to do the same. They also assist in recasting parts of the system which
-  don't fit a particular purpose into those that do.
+  don't fit a particular purpose into those that do. Structural patterns explain how to assemble objects and classes
+  into larger structures while keeping these structures flexible and efficient.
+
 
   Patterns: Decorator, Facade, Flyweight, Adapter and Proxy.
 
