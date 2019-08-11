@@ -1,0 +1,31 @@
+Bridge is a structural design pattern that lets you split a large class or a set of closely related
+ classes into two separate hierarchies—abstraction and implementation—which can be developed
+ independently of each other.
+
+ Abstraction and Implementation
+ Abstraction (also called interface) is a high-level control layer for some entity. This layer isn’t
+ supposed to do any real work on its own. It should delegate the work to the implementation layer (also
+ called platform).
+
+ When talking about real applications, the abstraction can be represented by a graphical user interface
+ (GUI), and the implementation could be the underlying operating system code (API) which the GUI layer
+ calls in response to user interactions.
+
+ The abstraction object controls the appearance of the app, delegating the actual work to the linked implementation object. Different implementations are interchangeable as long as they follow a common interface, enabling the same GUI to work under Windows and Linux.
+
+ As a result, you can change the GUI classes without touching the API-related classes. Moreover, adding
+ support for another operating system only requires creating a subclass in the implementation hierarchy.
+
+ You can use Abstract Factory along with Bridge. This pairing is useful when some abstractions defined
+ by Bridge can only work with specific implementations. In this case, Abstract Factory can encapsulate
+ these relations and hide the complexity from the client code.
+
+ You can combine Builder with Bridge: the director class plays the role of the abstraction, while
+ different builders act as implementations.
+
+ Bridge is usually designed up-front, letting you develop parts of an application independently of each
+ other. On the other hand, Adapter is commonly used with an existing app to make some
+ otherwise-incompatible classes work together nicely
+
+ Bridge can be recognized by a clear distinction between some controlling entity and several different
+ platforms that it relies on.

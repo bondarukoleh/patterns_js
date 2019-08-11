@@ -57,4 +57,4 @@ function adaptIt() {
   const report = clientReportService.getResult();
   console.log(report);
 }
-adaptIt();
+// adaptIt();

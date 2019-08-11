@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/bondarukoleh/patterns_js#readme",
   "dependencies": {
+    "@types/node": "^12.7.1",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3"
   }
