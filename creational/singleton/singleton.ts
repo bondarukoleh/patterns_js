@@ -39,7 +39,7 @@ class VehicleSingleton {
           break;
       }
     } else if(!!vehicleType) {
-      throw Error('You are trying to create another instance of singletone.')
+      throw Error('You are trying to create another instance of singletone. Stop it.')
     }
     return VehicleSingleton.instance
   }
