@@ -24,37 +24,36 @@ class Truck implements IVehicle {
 }
 
 class VehicleSingleton {
-  private instance: IVehicle = null;
+  private static instance: IVehicle = null;
 
-  constructor(private vehicleType: VehicleType, private color) {
-  }
+  private constructor() {}
 
-  getInstance(): IVehicle {
-    if (this.instance === null) {
-      switch (this.vehicleType) {
+  static getInstance(vehicleType?: VehicleType, color?): IVehicle {
+    if (VehicleSingleton.instance === null) {
+      switch (vehicleType) {
         case VehicleType.car:
-          this.instance = new Car(this.color);
+          VehicleSingleton.instance = new Car(color);
           break;
         case VehicleType.truck:
-          this.instance = new Truck(this.color);
+          VehicleSingleton.instance = new Truck(color);
           break;
       }
+    } else if(!!vehicleType) {
+      throw Error('You are trying to create another instance of singletone.')
     }
-    return this.instance
+    return VehicleSingleton.instance
   }
 }
 
 function singleIt() {
-  const carSingleton = new VehicleSingleton(VehicleType.car, 'Red');
-  const car1 = carSingleton.getInstance();
-  const car2 = carSingleton.getInstance();
+  const car1 = VehicleSingleton.getInstance(VehicleType.car, 'Red');
+  const car2 = VehicleSingleton.getInstance();
   console.log(`Cars are equal - ${car1 === car2}`);
 
-  const truckSingleton = new VehicleSingleton(VehicleType.truck, 'Black');
-  const truck1 = truckSingleton.getInstance();
-  const truck2 = truckSingleton.getInstance();
-  console.log(`Trucks are equal - ${truck1 === truck2}`);
-  console.log(`Truck instance of Truck - ${truck2 instanceof Truck}`);
-  console.log(`Truck's color - ${truck2.color}`);
+  try {
+    const truckSingleton = VehicleSingleton.getInstance(VehicleType.truck, 'Black');
+  } catch (e) {
+    console.log(e.message)
+  }
 }
 // singleIt();
