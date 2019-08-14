@@ -1,3 +1,26 @@
 Composite is a structural design pattern that lets you compose objects into tree structures and then work with these
  structures as if they were individual objects.
 
+ Use the Composite pattern when you have to implement a tree-like object structure.
+
+ The Composite pattern provides you with two basic element types that share a common interface: simple leaves and complex containers. A container can be composed of both leaves and other containers. This lets you construct a nested recursive object structure that resembles a tree.
+
+ Use the pattern when you want the client code to treat both simple and complex elements uniformly.
+
+ You can use Builder when creating complex Composite trees because you can program its construction steps to work recursively.
+
+ Chain of Responsibility is often used in conjunction with Composite. In this case, when a leaf component gets a request, it may pass it through the chain of all of the parent components down to the root of the object tree.
+
+ You can use Iterators to traverse Composite trees.
+
+ You can use Visitor to execute an operation over an entire Composite tree.
+
+ You can implement shared leaf nodes of the Composite tree as Flyweights to save some RAM.
+
+ Composite and Decorator have similar structure diagrams since both rely on recursive composition to organize an open-ended number of objects.
+
+ A Decorator is like a Composite but only has one child component. There’s another significant difference: Decorator adds additional responsibilities to the wrapped object, while Composite just “sums up” its children’s results.
+
+ However, the patterns can also cooperate: you can use Decorator to extend the behavior of a specific object in the Composite tree.
+
+ Designs that make heavy use of Composite and Decorator can often benefit from using Prototype. Applying the pattern lets you clone complex structures instead of re-constructing them from scratch.
