@@ -21,7 +21,7 @@ interface IPlatformElementFinder extends IElementFinderAbstraction {
 class AndroidElementFinder implements IPlatformElementFinder {
   public platform = 'Android'
   public driver: any
-  private name = 'text';
+  private text = 'text';
   private id = 'resource-id';
   private classFinder = 'className';
   private accessibilityId = 'content-desc';
@@ -35,7 +35,7 @@ class AndroidElementFinder implements IPlatformElementFinder {
   }
 
   findElementByName(name: string): IElement {
-    return this.driver.element(this.name, name)
+    return this.driver.element(this.text, name)
   }
 
   findElementById(id: string): IElement {
