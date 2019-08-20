@@ -18,7 +18,7 @@ SRP. You can apply the principle to methods or modules, ensuring that they do ju
 therefore have just one reason to change.
 
 The Open-closed Principle (OCP)
-The risk of changing an existing class is that you will introduce  an inadvertent change in behaviour.
+The risk of changing an existing class is that you will introduce an inadvertent change in behaviour.
 The solution is create another class that overrides the behaviour of  the original class. By following
 the OCP, a component is more likely to contain maintainable and re-usable code.
 
@@ -33,3 +33,8 @@ by the class. Each interface provides an single behavior.
 The Dependency inversion principle (DIP)
 The DIP simply states that high-level classes shouldn’t depend on low-level components, but instead both
 depend on an abstraction.
+High-level modules should not depend on low-level modules.
+Both should depend on abstraction.
+Abstractions should not depend upon details. Details should depend upon abstractions.
+
+Basically didn't figure out for sure what is the DIP and OCP difference.
