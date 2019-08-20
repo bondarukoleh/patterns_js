@@ -26,7 +26,7 @@ class Printer implements IPrinter{
   }
 }
 
-class CustomPrinter implements IPrinter{
+class CustomPrinter implements IPrinter {
   print(doc: any): boolean {
     // Print in some different way
     console.log(`CustomPrinter prints ${doc}`);
@@ -34,11 +34,9 @@ class CustomPrinter implements IPrinter{
   }
 }
 
-class SuperPrinter extends Printer{
-  constructor() {
-    super();
-  }
-
+// class SuperPrinter extends Printer { // as far as I get - don't depend on realization here try only
+// to implement. That's the difference with Open-Closed
+class SuperPrinter implements IPrinter {
   print(doc: any): boolean {
     // SUPER PRINT
     console.log(`SuperPrinter prints ${doc}`);
