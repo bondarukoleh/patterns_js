@@ -1,0 +1,35 @@
+S.O.L.I.D STANDS FOR:
+1. S — Single-responsibility principle (SRP) - a class should have one, and only one, reason to change,
+    meaning that a class should have only one job;
+2. O — Open-closed principle - (OCP) it should be possible to extend the behavior of a class without
+    modifying it, so should be open for extension but closed for modification;
+3. L — Liskov substitution principle (LIP) - subclasses should be substitutable (with ability to change
+on superclass type) for their superclasses, means child classes should never break the parent class’
+type definitions;
+4. I — Interface segregation (dividing) principle (ISP) - many small, client-specific interfaces are
+    better than one general purpose interface;
+5. D — Dependency Inversion Principle - (DIP) depends on abstractions not concretions;
+
+
+The Single Responsibility Principle (SRP)
+The SRP requires that a class should have only one reason to change. A class that follows this principle
+performs just few related tasks. You don’t need to limit your thinking to classes when considering the
+SRP. You can apply the principle to methods or modules, ensuring that they do just one thing and
+therefore have just one reason to change.
+
+The Open-closed Principle (OCP)
+The risk of changing an existing class is that you will introduce  an inadvertent change in behaviour.
+The solution is create another class that overrides the behaviour of  the original class. By following
+the OCP, a component is more likely to contain maintainable and re-usable code.
+
+The Liskov Substitution Principle (LSP)
+Subclass should override the parent class methods in a way that does not break functionality from a
+client’s point of view.
+
+The Interface Segregation Principle (ISP)
+The ISP states that we should write a series of smaller and more specific interfaces that are implemented
+by the class. Each interface provides an single behavior.
+
+The Dependency inversion principle (DIP)
+The DIP simply states that high-level classes shouldn’t depend on low-level components, but instead both
+depend on an abstraction.
