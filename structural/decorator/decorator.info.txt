@@ -1,0 +1,12 @@
+Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects
+inside special wrapper objects that contain the behaviors.
+
+Wrapper is the alternative nickname for the Decorator pattern that clearly expresses the main idea of the pattern.
+A “wrapper” is an object that can be linked with some “target” object. The wrapper contains the same set of methods as
+the target and delegates to it all requests it receives. However, the wrapper may alter the result by doing something
+either before or after it passes the request to the target.
+
+When does a simple wrapper become the real decorator? As I mentioned, the wrapper implements the same interface as the
+wrapped object. Make the wrapper’s reference field accept any object that follows thе interface. This will let you
+cover an object in multiple wrappers, adding the combined behavior of all the wrappers to it.
+

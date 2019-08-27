@@ -19,7 +19,7 @@ therefore have just one reason to change.
 
 The Open-closed Principle (OCP)
 The risk of changing an existing class is that you will introduce an inadvertent change in behaviour.
-The solution is create another class that overrides the behaviour of  the original class. By following
+The solution is create another class that overrides the behaviour of the original class. By following
 the OCP, a component is more likely to contain maintainable and re-usable code.
 
 The Liskov Substitution Principle (LSP)
