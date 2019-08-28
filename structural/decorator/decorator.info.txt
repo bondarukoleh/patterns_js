@@ -10,3 +10,28 @@ When does a simple wrapper become the real decorator? As I mentioned, the wrappe
 wrapped object. Make the wrapper’s reference field accept any object that follows thе interface. This will let you
 cover an object in multiple wrappers, adding the combined behavior of all the wrappers to it.
 
+The Decorator lets you structure your business logic into layers, create a decorator for each layer and compose
+objects with various combinations of this logic at runtime. The client code can treat all these objects in the same way,
+since they all follow a common interface
+
+Use the pattern when it’s awkward or not possible to extend an object’s behavior using inheritance.
+
+Adapter changes the interface of an existing object, while Decorator enhances an object without changing its interface.
+In addition, Decorator supports recursive composition, which isn’t possible when you use Adapter.
+
+Adapter provides a different interface to the wrapped object, Proxy provides it with the same interface, and Decorator
+provides it with an enhanced interface.
+
+The Chain of Responsibility handlers can execute arbitrary operations independently of each other. They can also stop
+passing the request further at any point. On the other hand, various Decorators can extend the object’s behavior while
+keeping it consistent with the base interface. In addition, decorators aren’t allowed to break the flow of the request.
+
+A Decorator is like a Composite but only has one child component. There’s another significant difference: Decorator adds
+additional responsibilities to the wrapped object, while Composite just “sums up” its children’s results.
+However, the patterns can also cooperate: you can use Decorator to extend the behavior of a specific object in the
+Composite tree.
+
+Decorator lets you change the skin of an object, while Strategy lets you change the guts.
+
+The difference with Proxy is: proxy usually manages the life cycle of its service object on its own, whereas the
+composition of Decorators is always controlled by the client.
