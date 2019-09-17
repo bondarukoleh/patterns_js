@@ -3,6 +3,9 @@ interface IJsonReporter {
   getReport(): string;
 }
 
+/*
+* Client service that works with JSON reporter. But we want to make it work with XML ether.
+* */
 class ClientReportService {
   constructor(private reporter: IJsonReporter) {
   }
