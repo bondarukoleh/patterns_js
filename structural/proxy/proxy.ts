@@ -89,4 +89,4 @@ function webUiTest() {
   page.sendKeysToSomeField(data)
 }
 
-webUiTest()
+// webUiTest()
