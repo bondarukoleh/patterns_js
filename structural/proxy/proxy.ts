@@ -12,28 +12,50 @@
 const element = {
   id: 'elementID',
   value: 'Element Value',
-  elementAction(){
-    console.log('making some action');
+}
+
+const elementsOnWebPage = [element]
+
+class Driver {
+  public name: any
+
+  constructor() {
+    this.name = 'Driver'
+  }
+
+  getElement(elementId: string) {
+    return elementsOnWebPage.find((element) => element.id = elementId)
   }
 }
 
-const elements = [element];
+class ElementFinder {
+  constructor(private elementID) {
+  }
 
-class Driver {
-  getElement(elementId: string){
-    return elements.find((element) => element.id = elementId)
+  click() {
+    console.log('Searching the element')
+    const element = new Driver().getElement(this.elementID)
+    console.log('Got element', element)
+    console.log('Clicking on element...')
+  }
+
+  sendKeys(data) {
+    console.log('Searching the element')
+    const element = new Driver().getElement(this.elementID)
+    console.log('Got element', element)
+    console.log(`Sending the data: ${data}`)
   }
 }
 
 class DriverProxy {
-  static MakeDriverProxy(target) {
-    return new Proxy(target, {
+  static MakeDriverProxy(targetObject) {
+    return new Proxy(targetObject, {
       get(target: any, property: string | number | symbol, receiver: any): any {
-        console.log('Got get request');
-        console.log(property);
-        if(property === 'getElement'){
-          return new Proxy(this, {
-            // implement
+        if (property === 'getElement') {
+          return new Proxy(targetObject[property], {
+            apply(target /*function targetObject[property]*/, thisArg /*driver object*/, argArray?: any): any {
+              return new ElementFinder(argArray.shift())
+            }
           })
         }
       },
@@ -42,4 +64,29 @@ class DriverProxy {
 }
 
 const driver = DriverProxy.MakeDriverProxy(new Driver())
-const foundElement = driver.getElement('elementID')
+
+class MyPageObject {
+  public somefield: any
+
+  constructor() {
+    this.somefield = driver.getElement('elementID') // lazy initialized, only when I call click/sendkeys on it
+    // this.somefield = new Driver().getElement('elementID') // this will try to immediately search
+  }
+
+  sendKeysToSomeField(data) {
+    this.somefield.sendkeys(data)
+  }
+}
+
+function webUiTest() {
+  // some setup
+  const data = 'Some Value'
+
+  // after that - browser maybe not running at all, and we cannot find elements.
+  const page = new MyPageObject()
+
+  // Only now we will search for element, and we more sure that it is on the page.
+  page.sendKeysToSomeField(data)
+}
+
+webUiTest()
