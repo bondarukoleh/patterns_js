@@ -20,7 +20,7 @@ class Handler implements IRequestHandler {
     if (this.nextHandler) {
       return this.nextHandler.handle(request)
     }
-    console.log(`NO HANDLER FOR "${request}"!!!`);
+    console.log(`NO HANDLER FOR "${request}"!!!`)
     return false
   }
 
@@ -28,17 +28,17 @@ class Handler implements IRequestHandler {
     this.nextHandler = handler
     return handler
   }
-};
+}
 
 class BaseHandler extends Handler {
-  constructor(){
+  constructor() {
     super()
   }
 
   handle(request: Requests): boolean {
     if (request === 'base') {
-      console.log('Handling base request...');
-      return true;
+      console.log('Handling base request...')
+      return true
     }
     return super.handle(request)
   }
@@ -47,8 +47,8 @@ class BaseHandler extends Handler {
 class SpecialHandler extends Handler {
   handle(request: Requests): boolean {
     if (request === 'special') {
-      console.log('Handling special request...');
-      return true;
+      console.log('Handling special request...')
+      return true
     }
     return super.handle(request)
   }
@@ -57,17 +57,18 @@ class SpecialHandler extends Handler {
 class SuperSpecialSpecialHandler extends Handler {
   handle(request: Requests): boolean {
     if (request === 'superSpecial') {
-      console.log('Handling superSpecial request...');
-      return true;
+      console.log('Handling superSpecial request...')
+      return true
     }
     return super.handle(request)
   }
 }
 
 class HandlerGenerator {
-  constructor(private handlers: Array<{new(): IRequestHandler}>) {}
+  constructor(private handlers: Array<{ new(): IRequestHandler }>) {
+  }
 
-  generateHandler(): IRequestHandler{
+  generateHandler(): IRequestHandler {
     const handler = new Handler()
     /*
     * I'm setting handlers without order, but we can do something like
@@ -81,7 +82,7 @@ class HandlerGenerator {
     * And we know that specialHandler will first handle request before superSpecialSpecialHandler
     * */
     this.handlers.reduce((handler, currentHandler) => handler.setHandler(new currentHandler()), handler)
-    return handler;
+    return handler
   }
 }
 
@@ -91,9 +92,10 @@ function clientCode() {
 
   const requests = [Requests.base, Requests.special, Requests.superSpecial, Requests.withOutHandler]
 
-  for(const request of requests){
+  for (const request of requests) {
     const handled = handler.handle(request)
     assert(handled, `Request "${request}" is not handled!`)
   }
 }
+
 clientCode()
