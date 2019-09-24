@@ -1,0 +1,31 @@
+Command is a behavioral design pattern that turns a request into a stand-alone object that contains all information
+about the request. This transformation lets you parameterize methods with different requests, delay or queue a request’s
+execution, and support undoable operations.
+
+If we look at logic of GUI and backend interoperate, we can:
+The Command pattern suggests that GUI objects shouldn’t send these requests directly. Instead, you should extract all of
+the request details, such as the object being called, the name of the method and the list of arguments into a separate
+command class with a single method that triggers this request.
+Command objects serve as links between various GUI and business logic objects. From now on, the GUI object doesn’t need
+to know what business logic object will receive the request and how it’ll be processed. The GUI object just triggers the
+command, which handles all the details.
+
+Use the Command pattern when you want to parametrize objects with operations.
+The Command pattern can turn a specific method call into a stand-alone object. This change opens up a lot of interesting
+uses: you can pass commands as method arguments, store them inside other objects, switch linked commands at runtime, etc.
+Here’s an example: you’re developing a GUI component such as a context menu, and you want your users to be able to
+configure menu items that trigger operations when an end user clicks an item.
+
+Use the Command pattern when you want to queue operations, schedule their execution, or execute them remotely.
+As with any other object, a command can be serialized, which means converting it to a string that can be easily written
+to a file or a database. Later, the string can be restored as the initial command object. Thus, you can delay and
+schedule command execution. But there’s even more! In the same way, you can queue, log or send commands over the network.
+
+Use the Command pattern when you want to implement reversible operations.
+Although there are many ways to implement undo/redo, the Command pattern is perhaps the most popular of all.
+To be able to revert operations, you need to implement the history of performed operations.
+The command history is a stack that contains all executed command objects along with related backups of the application’s state.
+This method has two drawbacks.
+First, it isn’t that easy to save an application’s state because some of it can be private.
+This problem can be mitigated with the Memento pattern.
+Second, the state backups may consume quite a lot of RAM.
