@@ -82,7 +82,7 @@ function webUiTest() {
   // some setup
   const data = 'Some Value'
 
-  // after that - browser maybe not running at all, and we cannot find elements.
+  // after that - browser maybe not yet running at all, and we cannot find elements.
   const page = new MyPageObject()
 
   // Only now we will search for element, and we more sure that it is on the page.

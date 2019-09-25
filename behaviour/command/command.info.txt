@@ -1,6 +1,12 @@
 Command is a behavioral design pattern that turns a request into a stand-alone object that contains all information
 about the request. This transformation lets you parameterize methods with different requests, delay or queue a request’s
 execution, and support undoable operations.
+i.g. It gives user ability to program behavior of some controllers. Request is turned to command to execute
+when some invoker (controller) is activate, command executes some actions on receiver. During turning request
+into command object - we can parametrize it with receiver id or request can have all information that it needs to be
+performed. Command object - slightly alike first-class function, that we can pass thru other entities and run when
+we needed.
+
 
 If we look at logic of GUI and backend interoperate, we can:
 The Command pattern suggests that GUI objects shouldn’t send these requests directly. Instead, you should extract all of
