@@ -1,0 +1,26 @@
+Iterator is a behavioral design pattern that lets you traverse elements of a collection without exposing its underlying
+representation (list, stack, tree, etc.).
+
+The main idea of the Iterator pattern is to extract the traversal behavior of a collection into a separate object
+called an iterator. The client code isn’t coupled to concrete classes because it works with collections and iterators
+only through interfaces. If you decide to connect your app to a new social network, where you need to find people with
+another algorithms and urls, you simply need to provide new collection and iterator classes without changing the
+existing code.
+
+Use the Iterator pattern when your collection has a complex data structure under the hood, but you want to hide its
+complexity from clients (either for convenience or security reasons).
+
+Use the pattern to reduce duplication of the traversal code across your app.
+The code of non-trivial iteration algorithms tends to be very bulky. When placed within the business logic of an app,
+it may blur the responsibility of the original code and make it less maintainable. Moving the traversal code to
+designated iterators can help you make the code of the application more lean and clean.
+
+Use the Iterator when you want your code to be able to traverse different data structures or when types of these
+structures are unknown beforehand.
+
+You can use Iterators to traverse Composite trees.
+You can use Factory Method along with Iterator to let collection subclasses return different types of iterators that are
+compatible with the collections.
+You can use Memento along with Iterator to capture the current iteration state and roll it back if necessary.
+You can use Visitor along with Iterator to traverse a complex data structure and execute some operation over its
+elements, even if they all have different classes.
