@@ -10,12 +10,12 @@ class Mediator implements IMediator {
 
   notify(sender: object, event: ElementEvent): void {
     if(sender instanceof NameInput){
-      if(event.action === 'data' && !!event.data){
+      if(event.action === 'data' && event.data){
         console.log(`Triggering actions needed to validate data: ${event.data}`);
       }
     }
     if(sender instanceof RememberMeCheckbox){
-      if(event.action === 'click' && !!event.state){
+      if(event.action === 'click' && event.state){
         console.log(`Triggering actions needed to process "RememberMe" checkbox`);
       }
     }
