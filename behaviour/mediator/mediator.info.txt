@@ -1,0 +1,33 @@
+Mediator is a behavioral design pattern that lets you reduce chaotic dependencies between objects.
+The pattern restricts direct communications between the objects and forces them to collaborate only via a
+mediator object.
+
+Use the Mediator pattern when it’s hard to change some of the classes because they are tightly coupled to a bunch of
+other classes.
+Use the pattern when you can’t reuse a component in a different program because it’s too dependent on other components.
+Use the Mediator when you find yourself creating tons of component subclasses just to reuse some basic behavior in
+various contexts.
+===================================================================================================================
+The ground rules for a mediator pattern is as follows:
+A mediator works with objects that have indirect relationships. The set the rules for interaction between these objects.
+Mediator knows all components and its methods.
+Mediator decides what to do - that is the business logic embedded in the mediator dictates what the co-ordination
+between objects.
+Mediator is best used to abstract the workflow logic at a higher level.
+A wizard dialog maybe a good example of a mediator pattern.
+
+The ground rules for a PubSub pattern is as follows:
+PubSub works best when the objects are either totally unrelated or there are too many of them to deal with.
+The publisher does not know the methods the subscribers have. That is, subscribers send the dispatch/callback methods
+to the publisher.
+Pubsub is a messaging pattern. It is the sibling of the message queue paradigm
+
+Facade and Mediator have similar jobs: they try to organize collaboration between lots of tightly coupled classes.
+Facade defines a simplified interface to a subsystem of objects, but it doesn’t introduce any new functionality.
+The subsystem itself is unaware of the facade. Objects within the subsystem can communicate directly.
+Mediator centralizes communication between components of the system. The components only know about the mediator object
+and don’t communicate directly.
+
+The primary goal of Mediator is to eliminate mutual dependencies among a set of system components. Instead, these
+components become dependent on a single mediator object. The goal of Observer is to establish dynamic one-way
+connections between objects, where some objects act as subordinates of others. But they are very similar in most cases.
