@@ -2,7 +2,7 @@ interface IPrinter {
   print(doc: any): boolean
 }
 
-class SimplePrinter implements IPrinter{
+class SimplePrinter implements IPrinter {
   print(doc: any): boolean {
     // print
     return true
@@ -10,20 +10,22 @@ class SimplePrinter implements IPrinter{
 }
 
 class SuperPrinter extends SimplePrinter {
+  // don't break the parent semantic of interface
   print(doc: any): boolean {
     // with some extra moves
-    return super.print(doc);
+    return super.print(doc)
   }
 }
 
 class SilentPrinter extends SimplePrinter {
+  // don't break the parent semantic of interface
   print(doc: any): boolean {
     // with some extra moves
-    const result = this.silentlyPrint();
+    const result = this.silentlyPrint()
     return result.done
   }
 
-  private silentlyPrint(): {done: boolean} {
+  private silentlyPrint(): { done: boolean } {
     // make some print in different way
     return {done: true}
   }
