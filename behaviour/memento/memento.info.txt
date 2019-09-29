@@ -1,4 +1,30 @@
 Memento is a behavioral design pattern that lets you save and restore the previous state of an object without
 revealing the details of its implementation.
 
+Originator - implements interface to create and restore mementos of itself.
+Memento - internal state of the Originator object in some storage format
+CareTaker - CareTaker responsible for storing mementos just a repository; does not make changes to mementos
 
+The Memento pattern delegates creating the state snapshots to the actual owner of that state, the originator object.
+Hence, instead of other objects trying to copy the editor’s state from the “outside,” the editor class itself can make
+the snapshot since it has full access to its own state.
+
+Use the Memento pattern when you want to produce snapshots of the object’s state to be able to restore a previous
+state of the object.
+The Memento pattern lets you make full copies of an object’s state, including private fields, and store them separately
+from the object. While most people remember this pattern thanks to the “undo” use case, it’s also indispensable when
+dealing with transactions (i.e., if you need to roll back an operation on error).
+
+Use the pattern when direct access to the object’s fields/getters/setters violates its encapsulation.
+The Memento makes the object itself responsible for creating a snapshot of its state. No other object can read the
+snapshot, making the original object’s state data safe and secure.
+
+You can use Command and Memento together when implementing “undo”. In this case, commands are responsible for
+performing various operations over a target object, while mementos save the state of that object just before a command
+gets executed.
+
+You can use Memento along with Iterator to capture the current iteration state and roll it back if necessary.
+
+Sometimes Prototype can be a simpler alternative to Memento. This works if the object, the state of which you want to
+store in the history, is fairly straightforward and doesn’t have links to external resources, or the links are easy
+to re-establish.
