@@ -1,9 +1,34 @@
 Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about
 any events that happen to the object they’re observing.
 
+Subject - maintains list of observers. Any number of Observer objects may observe a Subject implements an interface
+that lets observer objects subscribe or unsubscribe sends a notification to its observers when its state changes
+Observers - has a function signature that can be invoked when Subject changes (i.e. event occurs)
+
 The object that has some interesting state is often called subject, but since it’s also going to notify other objects
 about the changes to its state, we’ll call it publisher. All other objects that want to track changes to the publisher’s
 state are called subscribers.
 
 The Observer pattern suggests that you add a subscription mechanism to the publisher class so individual objects can
 subscribe to or unsubscribe from a stream of events coming from that publisher.
+
+Use the Observer pattern when changes to the state of one object may require changing other objects, and the actual
+set of objects is unknown beforehand or changes dynamically.
+
+Use the pattern when some objects in your app must observe others, but only for a limited time or in specific cases.
+The subscription list is dynamic, so subscribers can join or leave the list whenever they need to.
+
+===================================================================================================================
+The primary goal of Mediator is to eliminate mutual dependencies among a set of system components. Instead, these
+components become dependent on a single mediator object.
+The goal of Observer is to establish dynamic one-way connections between objects, where some objects act as subordinates
+of others. But they are very similar in most cases.
+
+Difference with pubsub:
+Observer - Publisher sends messages about his state changed to each subscriber directly, subscribers aware
+about publisher.
+PubSup - Publishers decoupled from subscribers, they sends state changes to broker, or event queue, or manager
+and manager filters events and sends them to each subscriber. Filtering can be Topic-based or Content-based.
+
+Observer pattern needs to be implemented in a single application address space.
+Publisher/Subscriber pattern is more of a cross-application pattern.
