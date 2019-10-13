@@ -27,11 +27,10 @@ class LoginForm implements IContext {
     this.changeState(stateToStartFrom)
   }
 
-
   changeState(state: IState) {
     this.state = state
     this.state.setContext(this)
-    this.state.handle()
+    this.handleState()
   }
 
   handleState() { /* login */
