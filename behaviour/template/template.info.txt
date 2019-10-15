@@ -1,0 +1,29 @@
+Template Method is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets
+subclasses override specific steps of the algorithm without changing its structure.
+
+The Template Method pattern suggests that you break down an algorithm into a series of steps, turn these steps into
+methods, and put a series of calls to these methods inside a single “template method.” The steps may either be abstract,
+or have some default implementation. To use the algorithm, the client is supposed to provide its own subclass, implement
+all abstract steps, and override some of the optional ones if needed (but not the template method itself).
+
+AbstractClass:
+offers an interface for clients to invoke the templateMethod
+implements template method which defines the primitive Steps for an algorithm
+provides the hooks (through method overriding) for a client developer to implement the Steps
+ConcreteClass:
+implements the primitive Steps as defined in AbstractClass
+
+Use the Template Method pattern when you want to let clients extend only particular steps of an algorithm, but not the
+whole algorithm or its structure.
+
+Use the pattern when you have several classes that contain almost identical algorithms with some minor differences.
+As a result, you might need to modify all classes when the algorithm changes.
+
+=======================================================================================================================
+Factory is a specialization of Template Method. At the same time, a Factory Method may serve as a step in a large
+Template Method.
+
+Template Method is based on inheritance: it lets you alter parts of an algorithm by extending those parts in subclasses.
+Strategy is based on composition: you can alter parts of the object’s behavior by supplying it with different strategies
+that correspond to that behavior. Template Method works at the class level, so it’s static. Strategy works on the object
+level, letting you switch behaviors at runtime.
