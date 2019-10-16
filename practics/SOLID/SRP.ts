@@ -28,13 +28,13 @@ interface IStapler {
 class Printer implements IPrinter {
   print(doc: any): boolean {
     // print doc
-    return true;
+    return true
   }
 }
 
 class Stapler implements IStapler {
   staple(): boolean {
     // staple doc
-    return true;
+    return true
   }
 }

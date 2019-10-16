@@ -29,23 +29,23 @@ interface IStapler {
 }
 
 interface ITeaMaker {
-  makeTea(): {tea: string}
+  makeTea(): { tea: string }
 }
 
 class Printer implements IPrinter {
   print(doc: any): boolean {
-    return true;
+    return true
   }
 }
 
 class Stapler implements IStapler {
   staple(): boolean {
-    return true;
+    return true
   }
 }
 
 class TeaMaker implements ITeaMaker {
-  makeTea(): {tea: string} {
+  makeTea(): { tea: string } {
     return {tea: 'earl grey'}
   }
 }
