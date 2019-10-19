@@ -1,0 +1,39 @@
+Visitor is a behavioral design pattern that lets you separate algorithms from the objects on which they operate.
+Represent an operation to be performed on the elements of an object structure.
+Visitor lets you define a new operation without changing the classes of the elements on which it operates.
+
+Visitors are useful when building extensibility in a library or framework. If the objects in your project provide a
+'visit' method that accepts a Visitor object which can make changes to the receiving object then you are providing an
+easy way for clients to implement future extensions.
+
+Visitor is not important to JavaScript because it offers far more flexibility by the ability to add and remove methods
+at runtime.
+
+ObjectStructure - maintains a collection of Elements which can be iterated over.
+Elements - defines an accept method that accepts visitor objects in the accept method the visitor's visit method is
+invoked with 'this' as a parameter.
+Visitor - implements a visit method. The argument is the Element being visited. This is where the Element's changes are
+made.
+
+So the main idea - that the elements implementing visit method where it either call appropriate for element realization
+of some action (for example for Circle class call visitor.makeSomethingFroCircle()) method, that gives us ability to
+keep all changes logic in ove visitor class, or in element call main makeChange(self/that) method (for example in
+Employee we apply any visitor, MakeRaiseVisitor or AddVacationVisitor, that have only makeChange method where it will
+raise salary to passed employee or add days) - that gives us ability to implement many Visitors with specific tasks
+but approach with many visitors - doesn't work with different elements (square, circles, ...) - it's more dumb way but
+more clear.
+So if you have too different elements in your collection - do one Visitor with a lot of methods, if element are the
+same more or less - do many Visitors.
+
+Use the Visitor when you need to perform an operation on all elements of a complex object structure.
+Use the Visitor to clean up the business logic of additional behaviors.
+Use the pattern when a behavior makes sense only in some classes of a class hierarchy, but not in others:
+You can extract this behavior into a separate visitor class and implement only those visiting methods that accept
+objects of relevant classes, leaving the rest empty.
+
+You can treat Visitor as a powerful version of the Command pattern. Its objects can execute operations over various
+objects of different classes.
+You can use Visitor to execute an operation over an entire Composite tree.
+You can use Visitor along with Iterator to traverse a complex data structure and execute some operation over its
+elements, even if they all have different classes.
+
