@@ -25,6 +25,9 @@ Rely on main topics:
 Requirements can be put in User stories. As a {persona}, I want to {want}, so that {purpose}...
 
 Accessibility - be aware of the Web Content Accessibility Guidelines (WCAG 2.0).
- 
 
-
+The Enemies of Clean Code:
+ – JavaScript;
+ – Management;
+ – Self;
+ – The cargo cult;
