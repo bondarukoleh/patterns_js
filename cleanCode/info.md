@@ -27,7 +27,13 @@ Requirements can be put in User stories. As a {persona}, I want to {want}, so th
 Accessibility - be aware of the Web Content Accessibility Guidelines (WCAG 2.0).
 
 The Enemies of Clean Code:
- – JavaScript;
- – Management;
- – Self;
- – The cargo cult;
+  - JavaScript (too many users with too many requirements and too many opinions);
+  – Management:
+    - Pressure to ship (when occurs documentation, architecture, consistency, testing, best practices begin degradation)
+    The solution to this is a crucial compromise between time to ship and technical debt (refactor, bugfix, testadding).
+    - Bad metrics (metrics are badly setup or showing not full picture of effort);
+    - Lack of ownership (codebase without stakeholders);
+  - Self (take care of your ego and measure your abilities)
+  - The cargo cult (copying patterns and behaviors without fully understanding their true purpose and functionality);
+
+## SOLID and Other Principles
