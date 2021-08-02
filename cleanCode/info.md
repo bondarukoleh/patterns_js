@@ -65,3 +65,27 @@ We should have the ability to inherit the behavior, or to pass some extendable c
 **Liskov substitution principle**
 The Liskov substitution principle states that types should be able to be replaced by their
 subtypes without altering the reliability of the program.
+
+**Interface segregation principle**
+The interface segregation principle is concerned with keeping interfaces highly cohesive,
+engaged in only one task or a set of tasks that are highly related. It states that no client
+should be forced to depend on methods that it does not use.
+
+**Dependency inversion principle**
+ - High-level modules should not depend on low-level modules. Both should  depend on abstractions 
+(that is, interfaces); 
+ - Abstractions should not depend on details. Details (such as concrete implementations) should
+depend on abstractions;
+
+Our abstractions should be separated (decoupled) in such a way that we can easily change low-level
+implementation details at a later date without having to refactor all of our code.
+The dependency inversion principle, in its second point, suggests that we do this via intermediary
+abstractions through which the high-level modules can interface with the low level details.
+These intermediary abstractions are sometimes known as adapters, as they adapt a low-level
+abstraction for consumption by a high-level abstraction.
+As we design and build abstractions, it's useful to create a dependency graph. They are a useful
+way to explore the true complexity of your code, and can often highlight areas of possible
+improvement. Most importantly, they let us observe where, if anywhere, our low-level implementations
+(details) impact our high-level abstractions.
+
+**The abstraction principle**
