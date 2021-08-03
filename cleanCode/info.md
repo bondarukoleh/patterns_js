@@ -89,3 +89,25 @@ improvement. Most importantly, they let us observe where, if anywhere, our low-l
 (details) impact our high-level abstractions.
 
 **The abstraction principle**
+The principle of abstraction - *Implementation should be separate from interface.* \
+An implementation is the complex underside of an abstraction. The interface is the simplified topside.
+That is why we say that abstraction is a simplified lever to hidden complexity.
+
+To separate implementation from interface to just the right degree, you have some rules:
+ - Don't repeat yourself (**DRY**): avoid writing code that duplicates. If you find yourself having to repeat yourself,
+then this indicates that you've failed to abstract something, or have under-abstracted something.
+ - You aren't gonna need it (**YAGNI**): Also known as keep it simple, stupid! (**KISS**), this warning tells us
+to be wary of over-abstracting code that does not need to be abstracted. It's the polar opposite of DRY, and serves to
+remind us that we should not attempt abstraction unless it's warranted (if we start to repeat ourselves, perhaps).
+
+Between these two warnings, somewhere in the middle, lies the perfect abstraction.
+
+Over-abstraction is when too much complexity has been removed or replaced, so that the underlying complexity becomes
+difficult to leverage, and confuses the user of the code. But also keep in mind that the appropriate level of
+abstraction is contextdependent. What may be over-abstracted for your use case may be underabstracted for another.
+
+So to not create under- and over-abstraction, but a balanced abstraction we must have very good understanding of
+both the problem domain and the user's capabilities and intents, analize the requirements to the functionality and
+build abstractions there.
+
+**Functional programming principles**
