@@ -46,7 +46,7 @@ LoD, or the principle of least knowledge. This so-called law has three core idea
 
 ### SOLID
 
-**Single responsibility principle**
+**Single responsibility principle** \
 The aims of the SRP are to arrive at code that is highly cohesive (связан). Cohesiveness is when an
 abstraction's parts are all functionally united in some way, where they can all be said to
 work together to fulfill the abstraction's purpose. A useful question about discerning
@@ -54,7 +54,7 @@ singular responsibility is: how many reasons does your abstraction's design have
 The SRP is not only about creating abstractions that are simple to use and maintain, it also
 allows us to write code that is more focused on its key purpose.
 
-**Open–closed principle**
+**Open–closed principle** \
 When crafting abstractions, we should enable them to be open to extension so that other
 developers can come along and build upon their behavior, adapting the abstraction to suit
 their needs. If a module or function does not behave as we require it to, it would
@@ -62,16 +62,16 @@ be ideal for us to be able to adapt it to our needs without having to modify it 
 own alternative.
 We should have the ability to inherit the behavior, or to pass some extendable config to method. 
 
-**Liskov substitution principle**
+**Liskov substitution principle** \
 The Liskov substitution principle states that types should be able to be replaced by their
 subtypes without altering the reliability of the program.
 
-**Interface segregation principle**
+**Interface segregation principle** \
 The interface segregation principle is concerned with keeping interfaces highly cohesive,
 engaged in only one task or a set of tasks that are highly related. It states that no client
 should be forced to depend on methods that it does not use.
 
-**Dependency inversion principle**
+**Dependency inversion principle** \
  - High-level modules should not depend on low-level modules. Both should  depend on abstractions 
 (that is, interfaces); 
  - Abstractions should not depend on details. Details (such as concrete implementations) should
@@ -88,7 +88,7 @@ way to explore the true complexity of your code, and can often highlight areas o
 improvement. Most importantly, they let us observe where, if anywhere, our low-level implementations
 (details) impact our high-level abstractions.
 
-**The abstraction principle**
+**The abstraction principle** \
 The principle of abstraction - *Implementation should be separate from interface.* \
 An implementation is the complex underside of an abstraction. The interface is the simplified topside.
 That is why we say that abstraction is a simplified lever to hidden complexity.
@@ -110,4 +110,44 @@ So to not create under- and over-abstraction, but a balanced abstraction we must
 both the problem domain and the user's capabilities and intents, analize the requirements to the functionality and
 build abstractions there.
 
-**Functional programming principles**
+### Functional programming principles
+**Functional purity** - when their return value is only derived from their input values (also called idempotence),
+and when there are no side-effects. These characteristics give us the following benefits:
+ - Predictability: If a function mutates a state that it does not own, potentially creating cascades of changes in 
+other areas of the code.
+ - Testability: returning the same result when given the same inputs, is very easy to verify. An idempotent function
+may still have side-effects, so it may not always be a pure function, but from the perspective of an abstraction
+user, idempotence is highly desirable
+
+**Immutability** - Immutability refers to the simple idea that data should not mutate. This means that, when we initialize
+an object, for example, we should not add new properties to it or change existing properties over time. Instead, we
+should derive a brand new object and only make changes to our own copy. `const` is JS.
+
+Knowing that something is immutable means that we can rest assured that it will not change; we can rely on its
+characteristics without worrying that some other part of the program may change it without us knowing.
+
+### Naming
+To come up with good name you should stick with some principles:
+
+**Purpose** - name indicates what something is for and how it behaves. If a name requires a comment to explain its
+purpose, then that is usually an indicator that it has not done its job as a name. \
+The purpose of something is highly contextual and so will, therefore, be informed by the surrounding code and the area
+of the codebase in which that name resides. This is why it's often okay to use a generic name as long as it is
+surrounded by context that helps to inform its purpose.
+
+```js
+class TenancyAgreement {
+// Option #1: too poor, can be missleaded
+saveSignedDocument(id, timestamp) {}
+// Option #2: perferfect
+saveSignedDocument(documentId, documentTimestamp) {}
+// Option #3: extra info 
+saveSignedDocument(tenancyAgreementSignedDocumentID, tenancyAgreementSignedDocumentTimestamp) {}
+}
+```
+
+**Concept** - Its core idea and how to think about it, how users should understand context and complexity of the 
+functionality that I'm writing.
+
+**Contract** - Expectations about how it works, indicates a contract with other parts of the surrounding abstraction.
+Variable started with `is` expected to be a Boolean type, caps name - constants, etc.
