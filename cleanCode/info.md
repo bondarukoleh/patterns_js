@@ -151,3 +151,20 @@ functionality that I'm writing.
 
 **Contract** - Expectations about how it works, indicates a contract with other parts of the surrounding abstraction.
 Variable started with `is` expected to be a Boolean type, caps name - constants, etc.
+
+Avoid exotic words in vars, kill instead of delete, etc. \
+If the name became too long - it indicates that abstraction is not properly split. \
+
+So most important characteristics of a name: purpose, concept, and contract. One of the easiest ways to
+use these characteristics upon your names is to use *consistency* and *hierarchy* to your benefit. \
+Consistency refers to using the same pattern of naming across many names within a given area of code. \
+Hierarchy refers to the way we structure and put together different areas of code to form a
+holistic (coupled) architecture. Make your hierarchy reflect your abstractions.
+
+To show the type of var in dynamically types language like JS - we can use Hungarian notation.
+Instead of button, we may use elButton or buttonElement \
+Instead of age, we may use nAge or ageNumber \
+Instead of details, we may use objDetails or detailsObject \
+But of course we need to keep an eye about the changes in code that affects them, so better use it
+when you are sure that it won't be frequent changes.
+
