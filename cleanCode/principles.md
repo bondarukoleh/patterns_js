@@ -165,6 +165,8 @@ To show the type of var in dynamically types language like JS - we can use Hunga
 Instead of button, we may use elButton or buttonElement \
 Instead of age, we may use nAge or ageNumber \
 Instead of details, we may use objDetails or detailsObject \
-But of course we need to keep an eye about the changes in code that affects them, so better use it
-when you are sure that it won't be frequent changes.
+But of course we need to keep an eye about the changes in code that affects them, so better use it when you are sure
+that it won't be frequent changes.
+
+If you stuck with var name, provide any 3 bad name - and try to combine one good from them, it's easier.  
 
