@@ -44,6 +44,10 @@ LoD, or the principle of least knowledge. This so-called law has three core idea
  - A unit should only talk to its immediate friends;
  - A unit should not talk to strangers;
 
+**Principle of Least Astonishment (POLA)!**
+The POLA (or least surprise) applies to software design and UX design. It broadly means that a given function or
+component of a system should act as most users would expect it to and should seek not to surprise or astonish too much.
+
 ### SOLID
 
 **Single responsibility principle** \
@@ -168,5 +172,5 @@ Instead of details, we may use objDetails or detailsObject \
 But of course we need to keep an eye about the changes in code that affects them, so better use it when you are sure
 that it won't be frequent changes.
 
-If you stuck with var name, provide any 3 bad name - and try to combine one good from them, it's easier.  
+If you stuck with var name, provide any 3 bad name - and try to combine one good from them, it's easier.
 
