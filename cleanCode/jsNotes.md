@@ -24,3 +24,35 @@ console.log(`👯‍♀`.length) // 4
 
 ### Reference types
 Function is a special object that can be invoked.
+
+#### Typing
+Better to check if entities you are working with is doing what you need right now, and not some abstract stuff.
+```js
+// instead of
+doSmthWithPeople(people){
+  if(!Array.isArray(people)){
+    throw new Error('People should be an array');
+  }
+  for (const man of people) {
+    if (!(man instanceof Man)) {
+      throw new Error('man should be Man');
+    }
+    console.log(`Man id: ${man.id} and name: ${man.name} `);
+  }
+}
+
+// create more specific checks, that will increase flexibility, but there is a limit ofcourse, be careful. 
+doSmthWithPeople(people){
+  cosnt isIterable = obj => obj != null && typeof obj[Symbol.iterator] === 'function';
+  
+  if(isIterable(people)){ // Map, Set, Array, String, and everything that implements [Symbol.iterator] correctly is iterable
+    throw new Error('People should be an array');
+  }
+  for (const man of people) {
+    if (!man.id || !man.name) { // duck typing
+      throw new Error('man should have id and name');
+    }
+    console.log(`Man id: ${man.id} and name: ${man.name} `);
+  }
+}
+```
