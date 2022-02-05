@@ -33,3 +33,15 @@ reliability (proved, known solutions), efficiency (modules work interoperate in 
 maintainability (easy to maintain and change), and usability (easy to work with and understand).
 
 ### Architectural design patterns
+#### MVC
+ - The Model: This describes the data and how business logic mutates that data. 
+Changes in the data will manifest in changes to the View. 
+ - The View: This describes how the Model is rendered (its format, layout, and appearance) and will invoke the 
+Controller whenever there is an action that needs to occur, possibly in response to a user event.
+ - The Controller: This accepts instructions from the View and informs the Model what actions or changes to carry out
+which will go on to affect whatever is rendered to the user via the View.
+
+It prescribes where we should put logic about business decisions (that is, in Models) and where we should put logic
+about displaying things to the user (that is, Views). Additionally, it gives us the Controller, which enables these
+two concerns to talk to each other. The separation that MVC fosters is hugely beneficial as it means our fellow
+programmers can easily discern where to make required changes or fixes.
