@@ -29,7 +29,7 @@ Function is a special object that can be invoked.
 Better to check if entities you are working with is doing what you need right now, and not some abstract stuff.
 ```js
 // instead of
-doSmthWithPeople(people){
+function doSmthWithPeople(people) {
   if(!Array.isArray(people)){
     throw new Error('People should be an array');
   }
@@ -42,8 +42,8 @@ doSmthWithPeople(people){
 }
 
 // create more specific checks, that will increase flexibility, but there is a limit ofcourse, be careful. 
-doSmthWithPeople(people){
-  cosnt isIterable = obj => obj != null && typeof obj[Symbol.iterator] === 'function';
+function doSmthWithPeople(people) {
+  const isIterable = obj => obj != null && typeof obj[Symbol.iterator] === 'function';
   
   if(isIterable(people)){ // Map, Set, Array, String, and everything that implements [Symbol.iterator] correctly is iterable
     throw new Error('People should be an array');
