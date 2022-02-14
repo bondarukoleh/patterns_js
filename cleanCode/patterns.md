@@ -1,10 +1,10 @@
-## Design patterns
+# Design patterns
 
 Design patterns are the useful structures, styles, and stencils _(шаблоны)_ that our code sits within. A design pattern
 may prescribe anything from the overall scaffolding of a code base to the individual syntactic pieces used to build 
 expressions, functions, and modules.
 
-### The perspective of a designer
+## The perspective of a designer
 Let's say we must construct an abstraction that allows users to give us two strings, a subject and a query.
 We must then calculate a count of how many strings query found within the subject.
 
@@ -32,8 +32,8 @@ Using design patterns well can have beneficial effects on all the tenets of clea
 reliability (proved, known solutions), efficiency (modules work interoperate in known, understandable way),
 maintainability (easy to maintain and change), and usability (easy to work with and understand).
 
-### Architectural design patterns
-#### MVC
+## Architectural design patterns
+### MVC
  - The Model: This describes the data and how business logic mutates that data. Changes in the data will manifest in
 changes to the View. 
  - The View: This describes how the Model is rendered (its format, layout, and appearance) and will invoke the 
@@ -46,7 +46,7 @@ about displaying things to the user (that is, Views). Additionally, it gives us 
 two concerns to talk to each other. The separation that MVC fosters is hugely beneficial as it means our fellow
 programmers can easily discern where to make required changes or fixes.
 
-#### MVVM
+### MVVM
 MVVM is similar in spirit to its ancestor, MVC. It prescribes a strict separation between the underlying business logic
 and data that drives a program and the rendering of that data:
 - The Model: This describes the data and how business logic mutates that data. Changes in the data will manifest in
@@ -65,8 +65,8 @@ HTML templates a custom attribute called ng-model, which will tie a user input e
 model, allowing data to flow in both directions. If the Model is updated, <input> will be updated to reflect that and
 vice versa.
 
-#### JavaScript modules
-##### Modular design patterns
+### JavaScript modules
+#### Modular design patterns
 
 The **Constructor pattern**
 Uses a singular constructor and then manually fills its prototype with methods and properties.
@@ -77,7 +77,7 @@ If you're not sure whether the Constructor pattern is applicable, consider wheth
  - Does the concept require construction?
  - Will the concept vary between instances?
 
-The **Class** pattern
+##### The Class pattern
 The Class pattern, which relies on the newer class definition syntax, has largely replaced the Constructor pattern.
 It involves the creation of classes, analogous to classical OOP languages, although behind the scenes it uses the
 same prototypal mechanism that the Constructor pattern uses.
@@ -111,3 +111,45 @@ the following criteria:
 Static methods are useful when you have a method or property whose functionality and existence are semantically
 related to the entire class as opposed to a singular instance.
 
+**Mixing-in classes** <br>
+JavaScript provides no native mixing-in mechanism so to achieve it you, either need to augment the prototype after the
+definition or effectively inherit from your mixins (as if they are superclasses). <br>
+Augmenting a prototype with your mixins is the simplest approach. We can achieve this by specifying mixins as objects
+and then adding them to prototype of a class via a convenient method such as Object.assign:
+```js
+const fooMixin = { foo() {} };
+const bazMixin = { baz() {} };
+class MyClass {}
+Object.assign(MyClass.prototype, fooMixin, bazMixin);
+```
+This approach, however, does not allow MyClass to override its own mixin methods. <br>
+Instead of directly mixing-in methods to an existing prototype object, we can use inheritance. This can most easily be
+achieved by so-called *Subclass Factories*.
+```js
+const fooSubclassFactory = SuperClass => {
+  return class extends SuperClass {
+    fooMethod1() {}
+    fooMethod2() {}
+  };
+};
+```
+Or to use more flexible approach:
+```js
+function mixin(...mixins) {
+  return mixins.reduce((BaseClass, mixinFunction) => {
+    return mixinFunction(base);
+  }, Object);
+}
+
+const alpha = Super => class extends Super { alphaMethod() {} };
+const bravo = Super => class extends Super { braveMethod() {} };
+
+class MyClass extends mixin(alpha, bravo) {
+  alphaMethod() { console.log('rewrited alphaMethod') }
+};
+```
+The mixin mechanism you should use probably depend on the exact characteristics you're seeking. In this section, we've
+seen two examples: one where we compose methods into a singular [[Prototype]] via Object.assign(), and another where we
+create a tree of inheritance (that is, a chain of [[Prototypes]]) to represent our mixin hierarchy.
+
+**Accessing a super-class** <br>
