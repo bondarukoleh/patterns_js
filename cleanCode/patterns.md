@@ -68,7 +68,7 @@ vice versa.
 ### JavaScript modules
 #### Modular design patterns
 
-The **Constructor pattern**
+##### Constructor pattern
 Uses a singular constructor and then manually fills its prototype with methods and properties.
 This was the traditional approach for creating classical OOP like classes in JavaScript before the class definition
 syntax existed. So this could be substituted with `class` in JS <br>
@@ -152,4 +152,58 @@ The mixin mechanism you should use probably depend on the exact characteristics 
 seen two examples: one where we compose methods into a singular [[Prototype]] via Object.assign(), and another where we
 create a tree of inheritance (that is, a chain of [[Prototypes]]) to represent our mixin hierarchy.
 
-**Accessing a super-class** <br>
+##### The Prototype pattern
+The Prototype pattern involves using plain objects to act as templates for other objects. The Prototype pattern extends
+this template object directly without fussing with instantiation via `new` or `Constructor.prototype` objects. You can
+think of it as similar to conventional constructor or Class patterns minus the constructor. <br>
+Typically, you'll first create an object to act as your template. This will have all of the methods and properties
+associated with your abstraction.
+```js
+/* functionality that you'd like to inherit */
+const inputComponent = {
+  type: 'input',
+  render() { return document.createElement('input'); },
+  /* inherent or even like this */
+  extend() { return Object.create(this); }
+};
+
+/* inhereting */
+const inputA = Object.create(inputComponent);
+
+/* rewriting the methods */
+const numericalInputComponent = Object.assign(inputComponent.extend(), {
+  render() {
+    const input = InputComponent.render.call(this);
+    input.type = 'number';
+    return input;
+  }
+});
+```
+The Prototype pattern is most useful in scenarios where you have an abstraction that will have varying characteristics
+between instances (or extensions) but does not require construction. At its core, the Prototype pattern really only
+refers to the extension mechanism (that is, via Object.create), so it can equally be used in any scenario where
+you have objects that may semantically relate to other objects via inheritance. <br>
+The Prototype pattern is useful in that it provides a simple and explicit mechanism of inheritance that can result in less clunky code (although, equally, if misapplied, can lead to more complexity).
+
+##### The Revealing Module pattern
+The Revealing Module pattern is a pattern used to encapsulate some private logic and then expose a public API. There are
+a few adaptations of this pattern, but usually it is expressed via an Immediately Invoked Function Expression (IIFE)
+that returns an object literal containing the public methods and properties. <br>
+The Revealing Module pattern is especially useful in scenarios where you need to have a delineation between private and
+public, where you have specific initialization logic, and where, for whatever reason, your abstraction does not suit
+more object-oriented patterns (Class or Constructor patterns).
+
+##### The Conventional Module pattern
+The Conventional Module pattern is usually expressed as a plain object literal with a set of methods.
+```js
+const timeDiffUtility = {
+  setConfig(conf) { this.config = conf },
+  minutesBetween(dateA, dateB) {}
+};
+```
+It's quite typical for such a module to also reveal specific initialization methods such as initialize, init, or setup.
+Alternatively, we may want to provide methods that change the state or configuration of the entire module. <br>
+The Conventional Module pattern is useful in any scenario where you simply wish to wrap up a set of related methods or
+properties into something with a common name.
+
+##### The Singleton Class pattern
