@@ -207,3 +207,27 @@ The Conventional Module pattern is useful in any scenario where you simply wish 
 properties into something with a common name.
 
 ##### The Singleton Class pattern
+Common use cases of singletons include Utilities, Logging, Caching, Global Event Buses, and so on.
+
+**Why it is antipattern:**
+It is overused, introduces unnecessary restrictions in situations where a sole instance of a class is not
+actually required, and introduces global state into an application, the same as global variable. <br>
+Makes code more complex, less useful, and a real pain to re-use or test. Where you need a single instance - make a 
+factory that returns one instance at the time, this won't violate SRP.
+
+### Planning and harmony
+When you develop something keep in mind:
+**Expect change and adaptation**: Every software project will involve change at some point. If we are forward-thinking
+in our architectural and modular designs, then we will be able to limit this future pain, but never begin a project
+thinking that you will create the One True Solution. Instead, iterate, question your judgment, and then iterate again.
+**Consult with other programmers**: Talk to the stakeholders who will have to make use of your code. That may be fellow
+programmers on your team or other programmers who'll be making use of the interfaces that you're providing. Field 
+opinions and data and then make an informed decision.
+**Avoid cargo culting and ego**: Be aware of cargo culting and your ego and how, if we're not careful, we can blindly
+inherit ways of doing things without crucially considering their suitability, or we can be trapped by our egos: thinking
+that one specific design or methodology is perfect just because it's the one we personally know and love.
+**Bias toward harmony and consistency**: When designing an architecture, above all, seek harmony. There is always the
+possibility of many individually tailored parts of a code base, but too many internal differences can confuse 
+maintainers and lead to a code base of splintered quality and reliability.
+
+# Real-World Challenges
