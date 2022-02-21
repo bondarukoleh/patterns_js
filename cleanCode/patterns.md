@@ -231,3 +231,35 @@ possibility of many individually tailored parts of a code base, but too many int
 maintainers and lead to a code base of splintered quality and reliability.
 
 # Real-World Challenges
+**Progressive enhancement** is a principle that espouses the importance of functionality that is resilient to 
+environmental constraints. It tells us that we should try to provide all users with as much functionality as their
+environment allows. It is often conceptually paired with **graceful degradation**, which is the ability for a piece of 
+software to maintain limited functionality even when its dependencies are unmet or only partially met (for example, a
+client-side validated <form> that is submittable even on browsers without JavaScript support is said to gracefully
+degrade).
+
+### SPA
+- Architecture (DX): There is a nicer separation of concerns between the frontend client and the backend API layer.
+This can lead to a cleaner architecture that helpfully delineates business logic from UI. Having one code base that 
+governs both the rendering and dynamic enhancement can vastly simplify things as well. 
+- State persistence (UX): Users can navigate and execute actions within a web application without having to lose in-page
+state, such as populated input fields or scroll-position. Additionally, the UX can include multiple different panes,
+modals, or sections that populate independently and can be persisted regardless of other actions taken.
+- Performance (UX): The bulk of HTTP resources can be loaded just once within the user's browser, increasing the 
+performance of any further actions or navigations within the application. That is, after the initial load of the 
+application, any further requests can be optimized to be simple JSON REST responses with no unnecessary boilerplate
+markup so the browser spends less time re-parsing or re-rendering boilerplate HTML, CSS, and JavaScript.
+
+##### DOM binding and reconciliation problem
+The challenge in manually fiddling with the DOM ourselves is that it doesn't scale very well without some kind of 
+abstraction. It is easy enough to take a piece of data and derive a DOM tree from that data, but having the DOM tree
+tied to changes within the data and having the data tied to user-derived changes in the DOM (for example, clicking on
+buttons) are quite burdensome things to implement.
+
+React's approach: <br>
+When someone changes the element state:
+1. React re-invokes the component (re-renders)
+2. React compares the tree returned from the re-render with the previous tree
+3. React makes the essential granular mutations to the live DOM for all of the changes to be reflected
+   
+##### Messaging and data propagation
