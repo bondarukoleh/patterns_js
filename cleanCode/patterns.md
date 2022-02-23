@@ -263,3 +263,74 @@ When someone changes the element state:
 3. React makes the essential granular mutations to the live DOM for all of the changes to be reflected
    
 ##### Messaging and data propagation
+There are a couple of paradigms we can use here:
+- Event-oriented: This means having specific global events that can be emitted and listened to (for example,
+userProfileNameChange). Any component or view within a page can then bind to this event and react accordingly by 
+updating its content. The state, therefore, exists at the same time in many different areas (amongst various components 
+or views).
+- State-oriented: This means having a global state object that contains the single source of truth for the user's 
+forename. This state object, or parts of it, can be recursively passed down through a component tree, meaning that, 
+upon any change, the entire component tree is fed with the new state. The state is therefore centralized yet propagated
+whenever a change occurs.
+
+The crucial thing that differs is how the change, in this case, a mutation of the forename, is communicated throughout 
+the application and where the data resides at any one time: 
+- The event-oriented paradigm has data living in several places at once. So, if, for whatever reason, one of those
+places fails to bind to the mutation of that event, then you can end up with out-of-sync data representations.
+- The state-oriented paradigm only has one canonical representation of the data and effectively pipes it to the
+relevant views or components, so that they are always hydrated with the latest version.
+
+##### Bundling and serving
+There are several specific build tools, such as Grunt, gulp.js, webpack, and Browserify.
+Bundling utilities will usually output a file with a hash of the file's content as part of the filename. This filename
+can then be dynamically or statically inserted into a <script> tag within your HTML to be served to the browser.
+Having a hash of the file's contents in the filename ensures that browsers always load the updated file and do not
+rely on a previously cached version of it. These files are usually minified as well. This is used in combination with 
+HTTP compression techniques (such as .gzip) to ensure that the transmission over HTTP from a server to a client is as
+small and quick as possible. Usually, you will have distinct development and production builds since some build
+steps, such as minification, would make development (and debugging!) harder.
+
+Serving bundled JavaScript to the browser is usually done with a singular <script> tag referencing the bundled
+JavaScript filename, placed at somewhere within the HTML that you serve to the browser.
+There are several important performance considerations when selecting an approach. The most important metric is 
+how quickly, from the time of the initial request, a user can start using the application. <br>
+When loading up superWebApp.example.com, we can imagine the following possible latencies experienced
+by the user:
+ - Fetching resources: Each resource fetch may involve a DNS lookup, an SSL handshake, and the completion of an HTTP 
+request and response cycle. Responses are usually streamed, meaning that the browser may begin parsing a response
+before it is completed. Browsers typically make a moderate amount of requests concurrently.
+ - Parsing HTML: This involves the browser parsing every tag name and iteratively building up a DOM representation of
+the HTML. Some encountered tags will cause a new fetchable resource to be enqueued, such as <img src>, <script src>,
+or <link type="stylesheet" href>. 
+ - Parsing CSS: This involves the browser parsing every ruleset within any fetched CSS. Referenced resources such as
+background images will only be fetched later if the corresponding element is found to exist on the page.
+ - Parsing / compiling JavaScript: Following the fetching of each JavaScript resource, its contents will be parsed and
+compiled, ready to execute. 
+Rendering HTML with CSS applied: This will ideally occur only once, when all CSS has been loaded. If there are
+asynchronously loaded CSS or other aesthetic resources (such as typefaces or images), then there may be several
+repaints/rerenders before the page can be considered fully rendered.
+ - Executing JavaScript: Depending on the location of the corresponding <script>, a piece of JavaScript will execute and 
+may then mutate the DOM or perform its own fetches. This can potentially block any other fetching/parsing/rendering
+from occurring.
+   
+It's usually preferable to have the execution of your JavaScript occur last, when the browser has done everything else.
+However, this is not always ideal. Placement of your primary bundled <script> (your main code base) is vital in 
+determining when your JavaScript will be fetched, when it will execute, and what the state of the DOM will be when it
+executes. <br>
+Here's a rundown of the most popular <script> placements and their respective advantages:
+- <script src> within <head>: This script will be fetched as soon as <script> is encountered during parsing.
+Fetching and execution will occur in serial order and will **block other parsing from occurring.**
+This is considered a bad practice as it needlessly blocks the continued parsing of the rest of the
+document (and hence increases the latency of the page load, from the user's perspective).
+- <script src> at the end of <body>: This script will be fetched as soon as <script> is encountered during parsing.
+Fetching and execution will occur in serial and will **block other parsing** from occurring. Usually, parsing can be
+considered mostly complete as <script> **is the very last thing** in <body>. 
+- <script src defer> within <head>: _Most preferable option_. This script will be enqueued for fetching as soon as <script> 
+is encountered during parsing, and this fetch will occur concurrently with the parsing of the HTML at a time that is
+convenient for the browser. **The script will only execute once the entire document is parsed.** 
+- <script src async> within <head>: This script will be enqueued for fetching as soon as <script> is encountered during
+parsing, and this fetch will occur concurrently with the parsing of the HTML at a time that is convenient for the
+browser. The execution of the script **will occur immediately following its fetch and will block** continued parsing.
+
+
+#### Security
