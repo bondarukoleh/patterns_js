@@ -334,3 +334,41 @@ browser. The execution of the script **will occur immediately following its fetc
 
 
 #### Security
+
+##### Cross-Site Scripting
+Vulnerability that enables attackers to inject their own executable code into the web app so that browsers will execute
+as if it were trusted. A couple of times:
+- **Stored XSS**: This involves an attacker somehow saving executable code within seemingly innocuous data to a web
+application that is persisted and then rendered back to other users of the web application. A primitive example of this
+is a social media website that allows me to specify my name as HTML (for example, <em>James!</em>) but without 
+preventing the inclusion of potentially dangerous executable HTML, allowing me to specify a name such as <script>alert('XSS!')....
+- **Reflected XSS**: This involves an attacker sending a victim to a URL whilst sending their executable payload along
+with the request, either in the URL, an HTTP header, or the request body. This executable payload is then executed when
+the user lands on the page. An example of this would be a search page that reflects a query back to the user (a common
+feature of any search page) but does so in a way that fails to escape HTML, meaning that the attacker need only send
+their victim to /search?q=<script>alert('XSS!')....
+
+XSS attacks that rely on client-side rendering are hence often called DOM-based XSS.
+
+Crucial to ensure that you're employing a combination of countermeasures:
+- Never trust user-entered data. Ideally, do not allow users to enter any HTML. If they can, then use an HTML parsing 
+library and whitelist specific tags and attributes that you trust.
+- Never place untrusted data in an HTML comment, a <script> element, a <style> element, or where an HTML tag or attribute
+name should appear (for example, <HERE ...> or <div HERE=...>). If you must, place it within an HTML element and ensure
+it is fully escaped (for example, & → &amp; and " → &quot;).
+- If inserting untrusted data into regular (non-JavaScript) HTML attributes, escape all ASCII values less than 256 with
+the &#xHH; format. If inserting into a regular HTML element's contents, then escaping the following characters is 
+sufficient: &, <, >, ", ', and /.
+- Avoid inserting untrusted data into areas where JavaScript is executed, such as <script>x = 'HERE'</script> or <img
+onmouseover="x='HERE'">, but if you absolutely must, ensure that the data is escaped so that it cannot break out of
+its quotes or its containing HTML.
+- Instead of embedding JavaScript-readable data in a <script>, use JSON to transmit data to the client, either via a
+request or by embedding it in a no-op element such as <div> (ensuring it's fully HTML-escaped!) and then extracting
+and deserializing it yourself.
+- Use an appropriately restrictive Content Security Policy (CSP)
+
+These countermeasures are not exhaustive, so it's advisable to also have a thorough readthrough of the Open Web
+Application Security Project's **(OWASP)** Cross-Site Scripting Prevention Cheatsheet.
+
+##### Content Security Policy
+
