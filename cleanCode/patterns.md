@@ -333,9 +333,9 @@ parsing, and this fetch will occur concurrently with the parsing of the HTML at 
 browser. The execution of the script **will occur immediately following its fetch and will block** continued parsing.
 
 
-#### Security
+### Security
 
-##### Cross-Site Scripting
+#### Cross-Site Scripting
 Vulnerability that enables attackers to inject their own executable code into the web app so that browsers will execute
 as if it were trusted. A couple of times:
 - **Stored XSS**: This involves an attacker somehow saving executable code within seemingly innocuous data to a web
@@ -371,4 +371,60 @@ These countermeasures are not exhaustive, so it's advisable to also have a thoro
 Application Security Project's **(OWASP)** Cross-Site Scripting Prevention Cheatsheet.
 
 ##### Content Security Policy
+CSP is a relatively new HTTP header that is available on all modern browsers. It is not universally supported or
+respected, so it should not be depended upon as our sole defense against XSS.
+Browsers that don't support CSP will fall back to their default behavior of the same-origin policy, which itself 
+provides a level of crucial security.
 
+The **same-origin** policy is a vital security mechanism employed by all browsers that restricts the ability of 
+documents or scripts when accessing some resources from other origins (origins match when they share the same protocol,
+port, and host). This policy means that, for example, JavaScript within *leah.example.org* cannot fetch
+*alice.example.org/data.json* With the advent of CSP, it is, however, possible for alice.example.org to express a
+level of trust and provide such access by disabling the same-origin policy just for leah.example.org.
+
+The *Content-Security-Policy* header allows you to specify where different types of resources are allowed to be loaded
+from. It is essentially an origin whitelist that the browser will validate all outgoing requests against.
+
+##### Subresource Integrity
+Subresource Integrity (SRI) is a security feature within browsers that allows us to verify that the resources they
+fetch are delivered without any unexpected manipulation or compromise. Such manipulation could potentially occur where
+the asset is served from (for example, your CDN is hacked) or during network transmission (for example, a middleman 
+attack).
+
+To verify your script, you must provide an integrity attribute that contains the name of a hashing algorithm 
+(such as sha256, sha384, or sha512) and then the hash itself. Here's an example:
+```js
+<script src="//cdn.example.com/foo.js"
+integrity="sha384-367drQif3oVsd8RI/DR8RsFbY1fJei9PN6tBnqnVMpUFw626Dlb86YfAP
+Ck2O8ce"></script>
+````
+
+#### Cross-Site Request Forgery
+Cross-Site Request Forgery (CSRF) is when commands, usually in the form of HTTP GET or POST requests, are transmitted
+from a user without their intent, by malicious code. A primitive example would be if a banking website at 
+bank.example.com had an API endpoint that allowed logged-in users to transfer a given amount to a specified account
+number. Even if users were authenticated via a session cookie on the bank.example.com domain, a malicious website could
+easily embed and submit <form> directing the transfer to their own account.
+
+One common mechanism to prevent CSRF is with a CSRF token. This is a generated key that is sent down to the client with
+each regular request while also being stored on the server as part of the user's session data. The server will then
+require the browser to send that key along with any subsequent HTTP requests to verify the source of each request.
+So, instead of just two parameters, our /transfer endpoint will now have a third, the token.
+
+##### Other
+SQL or NoSQL injections: Any user-submitted data that is expressed via a SQL or NoSQL query can, if not correctly
+escaped, provide an attacker with access to your data and the ability to read from, mutate, or destroy it.
+It's similar to XSS in that both are forms of injection attacks, and so our defense against it, again, comes down to
+identifying untrusted data and then correctly escaping it.
+
+Authentication/password attacks: An attacker can gain unauthorized access to a user's account by guessing their password,
+brute-forcing combinations, or using a rainbow table (a database of common password hashes). Generally, it is advisable
+to not create your own authentication mechanisms, but instead to rely on trusted libraries and frameworks. You should
+always ensure that you're using a secure hashing algorithm (such as bcrypt). A good resource is OWASP's Password Storage
+Cheat Sheet (https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html).
+
+Dependency hijacking: An attacker can gain access over your server-side or frontend code base by hijacking one of your
+dependencies. They may gain access to an npm package that exists in your dependency graph or compromise a CMS or CDN
+that you use to store JavaScript assets. To counteract these types of vulnerabilities, ensure that you use a secure
+package management system such as Yarn, try to use fixed version patterns in your package.json, always check changelogs,
+and on the frontend, have an appropriately restrictive CSP to prevent any malicious code from calling home.
