@@ -55,3 +55,36 @@ Challenges:
 - Complex tooling
 
 ## Writing Clean Tests
+Possible range of scenarios is often called the __input space__ or __input domain__ of a given function or module.
+We can consider something well-tested if we expose it to a representative variety of inputs from its input space.
+It's not necessary to test every possibility. What's more important is to test a representative sample of them.
+
+So, before we even begin writing code, we should always ensure that we know exactly what it is we're tasked with
+creating. If we find ourselves unsure what the full __input space__ might be, that's a strong indicator that we should
+take a step back, talk to stakeholders and users, and establish an exhaustive set of requirements.
+This is a strong benefit of test-led implementation (TDD), where these deficits in requirements are spotted early
+and can hence be resolved before costs are sunk into a pointless implementation.
+
+## Tools for Cleaner Code
+If we recall our original tenets of clean code (R.E.M.U) we can observe how various tools help us abide by them.
+- Reliability: Testing tools, user feedback, error loggers, analytics, linters, static typing tools, and languages
+- Efficiency: Performance measurement, analytics, user feedback, UX reviews, ecological costing (e.g. carbon footprint)
+- Maintainability: Formatters, linters, documentation generators, automated builds, and continuous integration
+- Usability: Analytics, user feedback, documentation generators, accessibility checkers, UX reviews, and hallway testing
+
+Tools that inspire good habits work by augmenting our __feedback loops__. A feedback loop is whatever eventually makes you
+realize that you need to make a change. Loops like:
+- Editing -> linter -> compilation;
+- Commiting -> linter -> compilation -> tests;
+- Pushing to repo -> tests -> minify & bundle;
+- Deployment -> tests -> error logs -> analytics -> User feedback -> QA / User testing
+
+### Linters and formatters
+A linter is a tool used to analyze code and discover bugs, syntax errors, stylistic inconsistencies, and suspicious
+constructs. Popular linters for JavaScript include ESLint, JSLint, and JSHint.
+ESLint also includes a facility for fixing a subset of these syntax errors via its --fix option.
+Thankfully, though, there are a number of more advanced tools like formatters, such as Prettier and Standard JS,
+will take our syntactic preferences and make active changes to our code to ensure that it remains consistent.
+
+## Collaboration and Making Changes
+
