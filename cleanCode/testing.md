@@ -87,4 +87,43 @@ Thankfully, though, there are a number of more advanced tools like formatters, s
 will take our syntactic preferences and make active changes to our code to ensure that it remains consistent.
 
 ## Collaboration and Making Changes
+### Clean documentation
+The purpose of documentation is to communicate **what a piece of software does** and **how to use it**. \
+We can split the characteristics of clean documentation into four aspects:
+- a clean piece of documentation communicates the **concept** of the software;
+- provides a **specification** of its behaviors
+- contains instructions for how to perform specific actions
+- does all of this with a focus on usability
 
+#### Concept
+A clean piece of documentation will communicate the underlying concept of the software. It'll do this by explaining what
+the software's purpose is in a way that allows potential users to see how they might make use of it, how our software
+can help the user. This can be considered the educational part of documentation: setting out the terminology and
+paradigms that will allow the reader to easily comprehend the other parts of the documentation and the software it
+describes. You'll hopefully notice how incredibly similar this is to the process of crafting clean code.
+Writing good documentation is a process of considering the user and then crafting the appropriate abstractions for them.
+- Determine your audience: Who are they and what's their general technical proficiency?
+- Determine their understanding of the problem domain: How much do they already know about this specific code? 
+- Determine the right the level of abstraction and best analogies: How can you communicate in a way that makes sense?
+
+The entire purpose of the software we build is to abstract away complexity, wrapping it up in a neat and simplified way.
+
+#### Specification
+Detailing the specific characteristics and behaviors of the interfaces provided by your software.
+- It's **literally in the code**: The specification of behavior is contained within the code and its tests, usually
+making it quite simple to manually write up this information as documentation.
+- It's **possible to automatically generate**.
+- It follows a **fixed format**: A specification will follow a straightforward format that is simple to author. It
+usually contains headings for individual endpoints or method signatures, and a sentence explaining each argument.
+
+As you can hopefully tell, this specification is a purely technical explanation of a function's behavior.
+Be wary of the following traps:
+- Not enough information to allow usage: It's important to provide enough information about your implementation so that
+another programmer, with no knowledge of your software, can begin to make use of it. It's insufficient to only
+specify types of arguments, for example. Provide extra information if the knowledge domain is especially obscure.
+- Incorrect or out-of-date information. This is why it's quite common to generate documentation automatically from
+annotated code.
+- Lack of examples: It's common to only list modules, methods, and argument signatures, without providing any examples.
+If doing this, the chance of confusion and pain is far higher.
+
+#### Instruction
