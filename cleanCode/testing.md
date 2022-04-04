@@ -127,3 +127,43 @@ annotated code.
 If doing this, the chance of confusion and pain is far higher.
 
 #### Instruction
+A clean piece of documentation will instruct a user in how to accomplish common tasks. These are commonly termed
+walkthroughs, tutorials, howtos, or recipes.
+
+- Upfront expectations and prerequisites: specify what hardware, software environment, and capabilities, reader
+preparation before beginning.
+- Specific steps that a reader can follow to reach teh result with code examples if possible.
+- An achievable and observable goal.
+
+Don't just tell a user what to do. Tell them what they're accomplishing at each stage, and why it matters. That is,
+don't just tell me to put salt in the dish, tell me why it needs salt!
+
+#### Usability
+Usability is purely about the way in which we express that content.
+There are many ways we can confuse:
+- Too much content;
+- Too little content;
+- Internal inconsistency;
+- Lacking structure;
+- Difficult to navigate content;
+- Lacking presentation.
+
+#### Documentation is everywhere
+- Written documentation (API specifications, conceptual explanations)
+- Explanatory images and diagrams (for example flowcharts)
+- Written tutorials (walk-throughs, recipes, how to do X)
+- Rich media introductions and tutorials (videos, podcasts, screencasts)
+- Public Q&As or issues (for example GitHub issues that explain how to fix something)
+- Community-driven Q&As (for example StackOverflow)
+- Independent communication between programmers (online or offline)
+- Meet-ups, conferences, and seminars (owner or community-driven)
+- Official support (paid support lines, emails, in-person sessions)
+- Educational classes (in-person or online, for example Coursera)
+- Tests (that explain concepts, flows, and expectations)
+- Good abstractions (that help to explain concepts)
+- Readable and familiar code (that can be easily understood)
+- Structure and delineations (directory structure, project names, and so on)
+- Intuitively designed interfaces (educating usage via good design)
+- Error flows and messages (for example X not working? Try Z instead.)
+
+#### Writing for non-technical audiences
