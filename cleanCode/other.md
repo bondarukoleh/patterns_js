@@ -23,3 +23,13 @@ example, writing and executing tests), or asking someone who is informed.
 > you try to understand a couple of flows in the app fully.
 
 ### Finding structure and observing history 
+Avoid getting side tracked when you're completing a task within a legacy or unfamiliar code base. Many things may appear
+odd or wrong, but your task must remain the most important thing.
+
+Stepping through the code:
+- Where is this code called? How an abstraction is activated.
+- What is passed to this code? What input an abstraction receives can help to understand what it does.
+- What is outputted by this code? Seeing the output of an abstraction.
+- What levels of misdirection or complexity exist here? Observing complex and tall stack traces.
+
+Asserting your assumptions
