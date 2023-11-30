@@ -1,6 +1,6 @@
 interface IProfileIterator {
   hasNext(): boolean;
-  getNext(): Profile;
+  getNext(): Profile | null;
   reset(): void;
 }
 
@@ -28,7 +28,7 @@ class FaceBookIterator implements IProfileIterator {
     this.type = iteratorType
   }
 
-  getNext(): Profile {
+  getNext() {
     if (!this.hasNext()) {
       return null
     }
@@ -56,16 +56,14 @@ class FaceBook implements ISocialNetworkCollection {
   private profiles: Array<Profile> = []
 
   constructor(profiles?: Array<Profile>) {
-    if (profiles.length) {
+    if (Array.isArray(profiles) && profiles.length) {
       this.profiles = profiles
-    } else {
-      this.profiles = null // get profiles from facebook
     }
   }
 
-  public getProfileFromFaceBook(profileEmail: string): Profile | null {
+  public getProfileFromFaceBook(profileEmail: string): Profile {
     // some API call to get profiles
-    return this.profiles.find(({email}) => email === profileEmail)
+    return this.profiles.find(({email}) => email === profileEmail) as unknown as Profile
   }
 
   createFriendsIterator(email): IProfileIterator {
@@ -102,6 +100,9 @@ class Spamer {
     const iterator = this.network.createFriendsIterator(email)
     // we also could implement Profile with [Symbol.iterator] declared, to use simple "for of"
     for (let profile = iterator.getNext(); iterator.hasNext(); profile = iterator.getNext()) {
+      if(profile === null) {
+        break;
+      }
       this.sendMassage(profile.email, message)
     }
   }

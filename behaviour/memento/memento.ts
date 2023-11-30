@@ -72,8 +72,12 @@ class CoordsStorage implements ICareTaker {
   }
 
   restoreBackup(): void {
-    this.dotField.restoreStateFrom(this.mementos.pop())
-    console.log('Backup restored...');
+    if(this.mementos.length) {
+      this.dotField.restoreStateFrom(this.mementos.pop() as unknown as IMemento)
+      console.log('Backup restored...');
+    } else {
+      console.log('No backup to restore');
+    }
   }
 
   showBackups(): void {
