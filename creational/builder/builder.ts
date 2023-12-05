@@ -34,11 +34,12 @@ class Vehicle implements IVehicle {
   public wheelSize: string;
 
   getInfo() {
-    const info = {};
-    for(const name of Object.getOwnPropertyNames(this)){
-      info[name] = this[name]
+    return {
+      engine: this.engine,
+      carcass: this.carcass,
+      color: this.color,
+      wheelSize: this.wheelSize,
     }
-    return info;
   }
 }
 

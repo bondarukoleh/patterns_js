@@ -5,7 +5,7 @@ interface IBuildHouse {
 abstract class BuildHouseTemplate implements IBuildHouse {
   public build() {
     this.makeFoundation()
-    this.makeWals()
+    this.makeWalls()
     this.makeRoof()
     this.makeGarden()
   }
@@ -14,8 +14,8 @@ abstract class BuildHouseTemplate implements IBuildHouse {
     console.log('making standard Foundation')
   }
 
-  private makeWals() {
-    console.log('making standard Wals')
+  private makeWalls() {
+    console.log('making standard Walls')
   }
 
   /* Hook. this method could be overridden */

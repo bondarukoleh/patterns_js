@@ -32,7 +32,7 @@ class Car implements IVehicle {
 }
 
 class Truck implements IVehicle {
-  public color: string = null;
+  public color: string;
 
   constructor(color) {
     this.color = color;

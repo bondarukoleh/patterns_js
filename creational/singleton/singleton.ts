@@ -3,11 +3,11 @@ enum VehicleType {
   truck = 'truck'
 }
 
-interface IVehicle {
+interface IColoredVehicle {
   color(): string;
 }
 
-class Car implements IVehicle{
+class ColoredCar implements IColoredVehicle{
   constructor(private vehicleColor) {
   }
   get color(){
@@ -15,7 +15,7 @@ class Car implements IVehicle{
   }
 }
 
-class Truck implements IVehicle {
+class Truck implements IColoredVehicle {
   constructor(private vehicleColor) {
   }
   get color(){
@@ -24,22 +24,22 @@ class Truck implements IVehicle {
 }
 
 class VehicleSingleton {
-  private static instance: IVehicle = null;
+  private static instance: IColoredVehicle;
 
   private constructor() {}
 
-  static getInstance(vehicleType?: VehicleType, color?): IVehicle {
-    if (VehicleSingleton.instance === null) {
+  static getInstance(vehicleType?: VehicleType, color?): IColoredVehicle {
+    if (VehicleSingleton.instance === undefined) {
       switch (vehicleType) {
         case VehicleType.car:
-          VehicleSingleton.instance = new Car(color);
+          VehicleSingleton.instance = new ColoredCar(color);
           break;
         case VehicleType.truck:
           VehicleSingleton.instance = new Truck(color);
           break;
       }
     } else if(!!vehicleType) {
-      throw Error('You are trying to create another instance of singletone. Stop it.')
+      throw Error('You are trying to create another instance of singleton. Stop it.')
     }
     return VehicleSingleton.instance
   }
@@ -56,4 +56,4 @@ function singleIt() {
     console.log(e.message)
   }
 }
-// singleIt();
+singleIt();

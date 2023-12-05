@@ -4,23 +4,23 @@ interface IVisitor {
   changeCarState: (vehicle: Car) => void
 }
 
-interface IVehicle {
-  visit(visitor: IVisitor)
+interface IVehicleToChange {
+  changeState(visitor: IVisitor)
 }
 
-class Car implements IVehicle {
+class Car implements IVehicleToChange {
   carState = 1;
 
-  visit(visitor: IVisitor) {
+  changeState(visitor: IVisitor) {
     visitor.changeCarState(this)
     console.log(`Car state is "${this.carState}" now`);
   }
 }
 
-class Truck implements IVehicle {
+class Truck implements IVehicleToChange {
   truckState = 2;
 
-  visit(visitor: IVisitor) {
+  changeState(visitor: IVisitor) {
     visitor.changeTruckState(this)
     console.log(`Truck state is "${this.truckState}" now`);
   }
@@ -41,7 +41,7 @@ class Visitor implements IVisitor {
 function clientCode() {
   const vehicles = [new Car(), new Truck()]
   const visitor = new Visitor()
-  vehicles.forEach((vehicle) => vehicle.visit(visitor))
+  vehicles.forEach((vehicle) => vehicle.changeState(visitor))
 }
 
 clientCode()
