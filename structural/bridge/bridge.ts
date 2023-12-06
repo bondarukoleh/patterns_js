@@ -78,10 +78,7 @@ class IosElementFinder implements IPlatformElementFinder {
 
 
 class ElementFinderAbstraction implements IElementFinderAbstraction {
-  private platformElementFinder: IPlatformElementFinder
-
-  constructor(platformElementFinder: IPlatformElementFinder) {
-    this.platformElementFinder = platformElementFinder;
+  constructor(private platformElementFinder: IPlatformElementFinder) {
   }
 
   findElementByAccessibilityId(id: string): IElement {

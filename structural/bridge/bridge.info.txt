@@ -11,7 +11,9 @@ Bridge is a structural design pattern that lets you split a large class or a set
  (GUI), and the implementation could be the underlying operating system code (API) which the GUI layer
  calls in response to user interactions.
 
- The abstraction object controls the appearance of the app, delegating the actual work to the linked implementation object. Different implementations are interchangeable as long as they follow a common interface, enabling the same GUI to work under Windows and Linux.
+ The abstraction object controls the appearance of the app, delegating the actual work to the linked implementation
+ object. Different implementations are interchangeable as long as they follow a common interface, enabling the same
+ GUI to work under Windows and Linux.
 
  As a result, you can change the GUI classes without touching the API-related classes. Moreover, adding
  support for another operating system only requires creating a subclass in the implementation hierarchy.
