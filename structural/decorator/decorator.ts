@@ -80,7 +80,7 @@ class SomeFileManager {
 }
 
 /* depend on our needs we can decide how much decorators we want. Little decorator factory (sort of) */
-function clientCode({fileName = 'default', encryption = true, compression = true} = {}) {
+function clientCodeExecution({fileName = 'default', encryption = true, compression = true} = {}) {
   let keeper: FileKeeper | BaseDecorator = new FileKeeper(fileName)
 
   if (encryption) {
@@ -96,4 +96,4 @@ function clientCode({fileName = 'default', encryption = true, compression = true
   manager.pushData('Some Data 2;')
   console.log(manager.getData())
 }
-// clientCode()
+// clientCodeExecution()

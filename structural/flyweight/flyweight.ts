@@ -60,7 +60,7 @@ class TreeType implements ITreeType {
 class TreeTypeFactory {
   private static treeTypes: Map<string, ITreeType> = new Map()
 
-  /* sometime we need to have ability to initiate factory with predefined types
+  /* sometimes we need to have the ability to initiate factory with predefined types
   constructor(initialTreeTypes: Array<ITreeTypeOpts>) {
     for (const initialOpt of initialTreeTypes) {
       this.treeTypes.set(TreeTypeFactory.makeKey(initialOpt), new TreeType(initialOpt))
@@ -88,7 +88,7 @@ class Forest {
 
   makeTree(opts: ITreeTypeOpts, coordinates: ICoordinates) {
     const treeType = TreeTypeFactory.getTreeTreeType(opts)
-    const tree = new Tree(coordinates.x, coordinates.y, treeType)
+    const tree = new Tree(coordinates.x, coordinates.y, treeType as unknown as ITree)
     this.trees.push(tree)
   }
 

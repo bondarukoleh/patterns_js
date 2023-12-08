@@ -66,15 +66,15 @@ class DriverProxy {
 const driver = DriverProxy.MakeDriverProxy(new Driver())
 
 class MyPageObject {
-  public somefield: any
+  public someField: any
 
   constructor() {
-    this.somefield = driver.getElement('elementID') // lazy initialized, only when I call click/sendkeys on it
-    // this.somefield = new Driver().getElement('elementID') // this will try to immediately search
+    this.someField = driver.getElement('elementID') // lazy initialized, only when I call click/sendkeys on it
+    // this.someField = new Driver().getElement('elementID') // this will try to immediately search
   }
 
   sendKeysToSomeField(data) {
-    this.somefield.sendkeys(data)
+    this.someField.sendkeys(data)
   }
 }
 
